@@ -7,7 +7,7 @@ import com.yybm8.mylist.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-
+@CrossOrigin("http://localhost:5173/")
 @RestController
 @RequestMapping("/users")
 public class UserCollection {
@@ -22,7 +22,7 @@ public class UserCollection {
         Integer pageSize = pages.getPageSize();
         String username = pages.getUsername();
         String password = pages.getPassword();
-        if(page==null&&pageSize==null){
+        if(page>=0&&pageSize>=0){
             page=1;
             pageSize=5;
         }

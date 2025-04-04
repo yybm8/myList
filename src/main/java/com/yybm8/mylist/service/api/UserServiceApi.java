@@ -22,9 +22,10 @@ public class UserServiceApi implements UserService {
         int count = usermapper.selectCount();
         page=(page-1)*pageSize;
         List<User> user=usermapper.selectAll(page,pageSize,username,password);
-        Map<Integer,List<User>> map=new HashMap<>();
-        map.put(count,user);
-        System.out.println(map);
+        Map<String,Object> map=new HashMap<>();
+        map.put("data",user);
+        map.put("count",count);
+
         if(user.isEmpty()){
             return  Result.noData();
         }
