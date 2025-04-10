@@ -14,6 +14,26 @@
     </where>limit #{page},#{pageSize}
     </select>
 
+    <select id="selectCount" resultType="int">
+        select count(*) from user <where>
+        <if test="username != null">
+            username like concat('%',#{username},'%')
+        </if>
+        <if test="password != null">
+            and password like concat('%',#{password},'%')
+        </if>
+    </where>
+    </select>
+
+
+
+
+
+
+
+
+
+
     <insert id="insert">
         insert into user(username,password,age,sex,status) values(#{username},#{password},#{age},#{sex},#{status})
     </insert>
@@ -22,6 +42,9 @@
     <delete id="delete">
         delete from user
         <where>
+            <if test ="id != null">
+                    id=#{id}
+            </if>
             <if test="username != null">
                  username=#{username}
             </if>

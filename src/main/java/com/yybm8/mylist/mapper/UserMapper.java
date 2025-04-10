@@ -10,9 +10,8 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
      List<User> selectAll(@Param("page")Integer page, @Param("pageSize")Integer pageSize,@Param("username") String username,@Param("password") String password);
-
-    @Select("select count(*) from workdata.user")
-     int selectCount();
+     
+     int selectCount(@Param("username") String username, @Param("password") String password);
 
     boolean insert(User user);
 

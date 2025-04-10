@@ -22,7 +22,7 @@ public class UserCollection {
         Integer pageSize = pages.getPageSize();
         String username = pages.getUsername();
         String password = pages.getPassword();
-        if(page>=0&&pageSize>=0){
+        if(page<=0&&pageSize<=0){
             page=1;
             pageSize=5;
         }
@@ -36,15 +36,15 @@ public class UserCollection {
         }
         return userService.insert(user);
     }
-    @PostMapping("/delete")//根据姓名或密码删除
+    @PostMapping("/delete")//根据id或姓名或密码删除
     public Result delete(@RequestBody User user){
-        if(user.getUsername()==null&&user.getPassword()==null){
+        if(user.getUsername()==null&&user.getPassword()==null&&user.getId()==null){
             return Result.noWork();
         }
         return userService.delete(user);
     }
 
-    @PostMapping("/update")//根据传入的信息动态更新
+    @PostMapping("/update")//根据传入的信息动态更新id必须传入
     public Result update(@RequestBody User user){
         if(user.getUsername()==null||user.getPassword()==null){
             return Result.noWork();

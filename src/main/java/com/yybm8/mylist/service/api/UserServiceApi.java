@@ -18,14 +18,13 @@ public class UserServiceApi implements UserService {
 
     @Override
     public Result page(Integer page, Integer pageSize, String username, String password) {
-        System.out.println("page:"+page+"pageSize:"+pageSize+"aaa");
-        int count = usermapper.selectCount();
+        System.out.println("page:"+page+"pageSize:"+pageSize+"aaa"+username+"bbb"+password);
+        int count = usermapper.selectCount(username,password);
         page=(page-1)*pageSize;
         List<User> user=usermapper.selectAll(page,pageSize,username,password);
         Map<String,Object> map=new HashMap<>();
         map.put("data",user);
         map.put("count",count);
-
         if(user.isEmpty()){
             return  Result.noData();
         }
